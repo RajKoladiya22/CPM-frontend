@@ -1,0 +1,817 @@
+/* ========================= */
+/* Global Styling */
+/* ========================= */
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+}
+/* Prevent layout shift when scrollbar appears */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color when hovered */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+
+
+/* ========================= */
+/* Sidebar Styles */
+/* ========================= */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #222831;
+  color: white;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar Links */
+.sidebar .nav-link {
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #393e46;
+  color: #00adb5;
+}
+
+.sidebar .nav-link.active {
+  background-color: #00adb5;
+  color: white;
+}
+
+/* Offcanvas Sidebar for Mobile */
+.sidebar-offcanvas {
+  background-color: #222831;
+  color: white;
+}
+
+/* Sidebar Box Shadow */
+@media (min-width: 992px) {
+  .sidebar {
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ========================= */
+/* Navbar Fix for Small Screens */
+/* ========================= */
+
+.custom-navbar-container {
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 10px !important;
+}
+
+.top-navbar {
+  background-color: #222831;
+  padding: 10px 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  padding: 5px 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-button:hover {
+  color: #00adb5;
+}
+
+.navbar-brand {
+  font-size: 18px;
+  font-weight: 600;
+  color: white !important;
+}
+
+/* ========================= */
+/* Offcanvas Sidebar for Small Screens (Now Matches Sidebar) */
+/* ========================= */
+
+.sidebar-offcanvas {
+  background-color: #222831 !important;
+  color: white;
+  width: 250px !important;
+  /* Ensuring the same width as sidebar */
+}
+
+.sidebar-offcanvas .offcanvas-header {
+  background-color: #222831;
+  border-bottom: 1px solid #393e46;
+}
+
+.sidebar-offcanvas .offcanvas-title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar-offcanvas .btn-close {
+  filter: invert(1);
+  /* Makes the close button white */
+}
+
+.sidebar-offcanvas .offcanvas-body {
+  padding: 20px;
+}
+
+.sidebar-offcanvas .nav-link {
+  color: white;
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.sidebar-offcanvas .nav-link:hover {
+  background-color: #393e46;
+  color: #00adb5;
+}
+
+.sidebar-offcanvas .nav-link.active {
+  background-color: #00adb5;
+  color: white;
+}
+
+/* Sidebar Box Shadow */
+@media (min-width: 992px) {
+  .sidebar {
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ========================= */
+/* Layout Adjustments */
+/* ========================= */
+
+.main-content {
+  /* margin-left: 250px; */
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Adjust layout for small screens */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+
+/* ========================= */
+/* Add Custom Field Button */
+/* ========================= */
+
+.add-field-button {
+  background-color: #00adb5 !important;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  padding: 10px 15px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.add-field-button:hover {
+  background-color: #007bff !important;
+}
+
+.add-field-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 173, 181, 0.5);
+}
+
+/* ========================= */
+/* Modal Custom Styling */
+/* ========================= */
+
+.custom-modal .modal-content {
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.custom-modal .modal-header {
+  background-color: #222831;
+  color: white;
+  border-bottom: 2px solid #00adb5;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.custom-modal .modal-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.custom-modal .btn-close {
+  filter: invert(1);
+  /* Makes close button white */
+}
+
+.custom-modal .modal-body {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.custom-modal .form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.custom-modal .form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-modal .form-control:focus {
+  border-color: #00adb5;
+  box-shadow: 0px 0px 8px rgba(0, 173, 181, 0.3);
+}
+
+.custom-modal .form-check-label {
+  font-size: 14px;
+  color: #333;
+}
+
+.custom-modal .btn-primary {
+  background: #00adb5;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-modal .btn-primary:hover {
+  background: #007bff;
+}
+
+.custom-modal .btn-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+
+/* ========================= */
+/* Form Container & Layout */
+/* ========================= */
+
+.client-form-container {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================= */
+/* Form Labels & Inputs */
+/* ========================= */
+
+.client-form .form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-label {
+  padding-top: 10px;
+}
+
+.client-form .form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.client-form .form-control:focus {
+  border-color: #00adb5;
+  box-shadow: 0px 0px 8px rgba(0, 173, 181, 0.3);
+}
+
+/* ========================= */
+/* Dynamic Fields in Same Line */
+/* ========================= */
+
+.dynamic-field-group {
+  /* display: flex; */
+  align-items: center;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.dynamic-field-group .form-control,
+.dynamic-field-group .form-check-input {
+  flex: 1;
+}
+
+.dynamic-field-group .form-check-label {
+  margin-left: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ========================= */
+/* Submit Button */
+/* ========================= */
+
+.client-form .btn-primary {
+  background: #00adb5;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.client-form .btn-primary:hover {
+  background: #007bff;
+}
+
+.client-form .btn-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+
+/* ========================= */
+/* Client List - Table & Search UI */
+/* ========================= */
+.client-list-container {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  position: relative;
+}
+
+.client-list-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* ========================= */
+/* Search Form Styles */
+/* ========================= */
+.search-form {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.search-form .form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-form .form-control:focus {
+  border-color: #00adb5;
+  box-shadow: 0px 0px 8px rgba(0, 173, 181, 0.3);
+}
+
+.search-form .btn-primary {
+  background: #00adb5;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.search-form .btn-primary:hover {
+  background: #007bff;
+}
+
+/* ========================= */
+/* Table Styles */
+/* ========================= */
+.client-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.client-table thead {
+  background: #00adb5 !important;
+  color: white;
+  font-weight: bold;
+}
+
+.client-table th,
+.client-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.client-table tr:hover {
+  background: #f1f1f1;
+  transition: 0.2s;
+}
+
+.client-table .btn-info {
+  background: #007bff !;
+  border: none;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.client-table .btn-info:hover {
+  background: #0056b3;
+}
+
+/* ========================= */
+/* Customer Detail */
+/* ========================= */
+
+.customer-detail-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 16px;
+  background: #fff;
+}
+
+.customer-detail-table th,
+.customer-detail-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.customer-detail-table tr:hover {
+  background: #f9f9f9;
+}
+
+/* Green background for non-blacklisted customers */
+.status-green {
+  background: #00c32e !important;
+  color: #155724 !important;
+  font-weight: bold;
+}
+
+/* Red background for blacklisted customers */
+.status-red {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  font-weight: bold;
+}
+
+/* Modal styling */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* ========================= */
+/* Home */
+/* ========================= */
+
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  /* background: #f8f9fa; */
+}
+
+.home-card {
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: #ffffff;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.home-title {
+  color: #007bff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.home-text {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.logout-btn {
+  width: 150px;
+  background: #dc3545;
+  border: none;
+}
+
+.logout-btn:hover {
+  background: #c82333;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.alert-box {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+
+
+/* ========================= */
+/* Generate Code */
+/* ========================= */
+
+/* Page Layout */
+.generate-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  /* background: #f8f9fa; */
+  padding: 20px;
+}
+
+/* Card Styling */
+.generate-card {
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: #ffffff;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Title */
+.generate-title {
+  color: #00adb5;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Input Styling */
+.generate-input {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+.generate-input:focus {
+  border-color: #00adb5;
+  box-shadow: 0 0 8px rgba(0, 173, 181, 0.3);
+}
+
+/* Buttons */
+.generate-btn {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  background-color: #00adb5 !important;
+  border: none !important;
+}
+
+.generate-btn-primary {
+  /* background-color: #007bff; */
+  border: none;
+}
+
+.generate-btn-primary:hover {
+  background-color: #007bff !important;
+}
+
+.generate-btn-success {
+  background-color: #28a745 ;
+  border: none;
+}
+
+.generate-btn-success:hover {
+  background-color: #007bff !important;
+}
+
+/* Copy Button */
+.copy-btn {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+.copy-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Copied Message */
+.copied-message {
+  color: #28a745;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+/* ========================= */
+/* Login */
+/* ========================= */
+.login-box {
+  /* margin-left: 100px !important; */
+  margin-top: 150px !important;
+  background-image: url('../image/image-1.png');
+  background-size: contain; 
+  /* background-position: 220px ;  */
+  background-repeat: no-repeat;
+}
+.regiter-box{
+  /* margin-left: 100px !important; */
+  margin-top: 150px !important;
+  background-image: url('../image/image-2.png');
+  background-size: contain; 
+  background-position: 220px ; 
+  background-repeat: no-repeat;
+}
+
+/* Page Background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  /* background: #f8f9fa; */
+  padding: 20px;
+}
+
+/* Login Card */
+.login-card {
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: #ffffff;
+  /* text-align: center; */
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Title */
+.login-title {
+  color: #007bff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Form Input */
+.login-input {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-input:focus {
+  border-color: #00adb5;
+  box-shadow: 0 0 8px rgba(0, 173, 181, 0.3);
+}
+
+/* Buttons */
+.login-btn {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  border: none !important;
+}
+
+.login-btn-primary {
+  background-color: #00adb5 !important;
+}
+
+.login-btn-primary:hover {
+  background-color: #007bff !important;
+}
+
+.login-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Alert Message */
+.login-alert {
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-card {
+      padding: 20px;
+  }
+}
+
+
+/* /////////////////////// */
+
+.dashboard-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: 0.3s;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+}
+
+.dashboard-card h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.home-container {
+  padding: 20px;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
