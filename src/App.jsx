@@ -19,7 +19,7 @@ function Layout() {
   return (
     <div className="d-flex ">
       {!hideSidebar && <Sidebar />} {/* Sidebar will not show on login/register */}
-      <div className="main-content flex-grow-1 p-3" style={{ marginTop: "56px" }}>
+      <div className="main-content flex-grow-1 p-3" style={{ marginTop: "65px" }}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

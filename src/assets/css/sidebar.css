@@ -222,7 +222,21 @@
   }
 
   /* ------------------- */
+  .sidebar {
+    width: 22% !important;
+  }
+  .main-content {
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    width: 88% !important;
+  }
 
+}
+
+@media (max-width:992px) {
+  .main-content {
+    margin-left: 250px !important;
+  }
 }
 
 @media(max-width:991px) {
@@ -270,6 +284,9 @@
   }
 
   /* ------------------- */
+  .main-content {
+    margin-left: 0 !important;
+  }
 
 }
 
@@ -495,7 +512,7 @@ html {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 17%;
   height: 100%;
   background-color: #222831;
   color: white;
@@ -640,6 +657,7 @@ html {
   margin-left: 250px;
   padding: 20px;
   transition: margin-left 0.3s ease-in-out;
+  width: 83% !important;
 }
 
 /* Adjust layout for small screens */

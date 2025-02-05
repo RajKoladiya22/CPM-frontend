@@ -28,7 +28,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} className="mt-5">
       <Modal.Header closeButton>
         <Modal.Title>Update Customer</Modal.Title>
       </Modal.Header>
@@ -84,6 +84,16 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               required
             />
           </Form.Group>
+          <Form.Group>
+            <Form.Label>Remark</Form.Label>
+            <Form.Control
+              type="text"
+              name="remark"
+              value={formData.remark || ""}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
           {customFields &&
             customFields.map((field) => (
               <Form.Group key={field._id}>
@@ -96,7 +106,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
                 />
               </Form.Group>
             ))}
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="mt-2">
             Update
           </Button>
         </Form>
