@@ -27,13 +27,14 @@ export const registerUser = (userData, navigate) => async (dispatch) => {
 export const loginUser = (credentials, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_REQUEST" });
-
+    
     // const { data } = await axios.post(
     //   "https://cpm-api.vercel.app/api/users/login",
     //   credentials
     // );
     const { data } = await axiosInstance.post("/users/login", credentials);
-
+    console.log(data);
+    
     let token = data?.data?.token;
     let user = data?.data?.user;
 

@@ -2,7 +2,8 @@ import axios from "axios";
 import { logoutUser } from "../redux/actions/authActions";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8052/api",
+  // baseURL: "http://localhost:8052/api",
+  baseURL: "https://cpm-api.vercel.app/api",
 });
 
 // Request Interceptor (Attach token automatically)
