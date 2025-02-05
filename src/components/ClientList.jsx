@@ -181,7 +181,7 @@ const ClientList = () => {
                                         <Button
                                             variant="info"
                                             size="sm"
-                                            className="view-btn"
+                                            className="m-1 view-btn"
                                             onClick={() => handleViewDetails(customer)}
                                         >
                                             View
@@ -191,7 +191,7 @@ const ClientList = () => {
                                                 <Button
                                                     variant="warning"
                                                     size="sm"
-                                                    className="ms-2"
+                                                    className="m-1"
                                                     onClick={() => handleUpdateCustomer(customer)}
                                                 >
                                                     Update
@@ -199,7 +199,7 @@ const ClientList = () => {
                                                 <Button
                                                     variant="danger"
                                                     size="sm"
-                                                    className="ms-2"
+                                                    className="m-1"
                                                     onClick={() => handleDeleteCustomer(customer._id)}
                                                 >
                                                     Delete

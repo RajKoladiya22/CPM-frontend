@@ -71,11 +71,12 @@ export const getCustomFields = () => async (dispatch) => {
 export const searchCustomer = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: "FETCH_CUSTOMERS_REQUEST" });
-
+    console.log(searchQuery);
+    
     const { data } = await axiosInstance.get("/customer/customer", {
       params: searchQuery, // Sending search query as params
     });
-    
+    console.log(data)
     dispatch({
       type: "FETCH_CUSTOMERS_SUCCESS",
       payload: data.data, // Assuming the response contains `data` with customers
