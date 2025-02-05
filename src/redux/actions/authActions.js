@@ -5,16 +5,16 @@ import axiosInstance from "../../utils/axiosInstance";
 export const registerUser = (userData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_REQUEST" });
-    console.log(userData);
+    // console.log(userData);
     
     const { data } = await axiosInstance.post("/users/register", userData);
-    console.log("DATA", data);
+    // console.log("DATA", data);
 
     dispatch({ type: "REGISTER_SUCCESS", payload: data });
     toast.success("Register successfull!");
     // navigate("/login");
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     
     dispatch({
       type: "REGISTER_FAIL",

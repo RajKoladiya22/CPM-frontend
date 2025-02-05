@@ -23,7 +23,7 @@ const GenerateCode = () => {
     }, [copied]);
 
     const handleGenerateAdminCode = () => {
-        console.log(username);
+        // console.log(username);
         
         if (username.trim()) dispatch(generateAdminCode(username));
     };

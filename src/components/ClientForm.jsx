@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddCustomFieldButton from "./AddCustomFieldButton";
-import "../assets/css/sidebar.css"; 
+import "../assets/css/sidebar.css";
 
 const ClientForm = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,9 @@ const ClientForm = () => {
         contactPerson: "",
         mobileNumber: "",
         email: "",
-        tallySerialNo : "",
+        tallySerialNo: "",
+        prime: "",
+        blacklited: "",
         remark: "",
         dynamicFields: {},
     });
@@ -48,6 +50,8 @@ const ClientForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(formData);
+
         dispatch(addCustomer(formData))
             .then(() => {
                 setFormData({
@@ -55,8 +59,10 @@ const ClientForm = () => {
                     contactPerson: "",
                     mobileNumber: "",
                     email: "",
+                    prime: "",
+                    blacklited: "",
                     remark: "",
-                    tallySerialNo : "",
+                    tallySerialNo: "",
                     dynamicFields: {},
                 });
             });
@@ -123,6 +129,34 @@ const ClientForm = () => {
                                 />
                             </Form.Group>
 
+                            {/* <div className="d-flex align-items-center gap-4">
+                                <Form.Group controlId="blacklisted" className="d-flex align-items-baseline">
+                                    <Form.Label className="me-2">Blacklisted</Form.Label>
+                                    <Form.Check
+                                        type="switch"
+                                        id="blacklisted-switch"
+                                        label=""
+                                        name="blacklited"
+                                        checked={formData.blacklited}
+                                        onChange={handleChange}
+                                    />
+                                </Form.Group>
+
+                                <Form.Group controlId="prime" className="d-flex align-items-baseline">
+                                    <Form.Label className="me-2">Prime</Form.Label>
+                                    <Form.Check
+                                        type="switch"
+                                        id="prime-switch"
+                                        label=""
+                                        name="prime"
+                                        checked={formData.prime}
+                                        onChange={handleChange}
+                                    />
+                                </Form.Group>
+                            </div> */}
+
+
+
                             <Form.Group>
                                 <Form.Label>Remark</Form.Label>
                                 <Form.Control
@@ -135,7 +169,7 @@ const ClientForm = () => {
 
                             {/* Dynamic Custom Fields */}
                             {customFields.map((field) => (
-                                <Form.Group key={field._id} className="dynamic-field-group">
+                                <Form.Group key={field._id} className="dynamic-field-group ">
                                     <Form.Label>{field.fieldName}</Form.Label>
                                     {field.fieldType === "text" && (
                                         <Form.Control
@@ -165,13 +199,23 @@ const ClientForm = () => {
                                         />
                                     )}
                                     {field.fieldType === "checkbox" && (
+                                        // <Form.Check
+                                        //     type="checkbox"
+                                        //     label={field.fieldName}
+                                        //     name={field.fieldName}
+                                        //     checked={formData.dynamicFields[field.fieldName] || false}
+                                        //     onChange={(e) => handleDynamicChange(e, field.fieldName)}
+                                        // />
                                         <Form.Check
-                                            type="checkbox"
-                                            label={field.fieldName}
+                                            type="switch"
+                                            id={field.fieldName}
+                                            label=""
                                             name={field.fieldName}
                                             checked={formData.dynamicFields[field.fieldName] || false}
                                             onChange={(e) => handleDynamicChange(e, field.fieldName)}
+                                            className="m-2"
                                         />
+
                                     )}
                                     {field.fieldType === "date" && (
                                         <Form.Control

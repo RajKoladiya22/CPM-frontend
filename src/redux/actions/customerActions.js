@@ -10,7 +10,7 @@ export const addCustomer = (customerData) => async (dispatch) => {
       "/customer/customer",
       customerData
     );
-    console.log(data);
+    // console.log(data);
 
     dispatch({ type: "ADD_CUSTOMER_SUCCESS", payload: data });
 
@@ -81,7 +81,7 @@ export const searchCustomer = (searchQuery) => async (dispatch) => {
       payload: data.data,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
 
     const errorMessage =
       error.response?.data?.message || "Something went wrong";
