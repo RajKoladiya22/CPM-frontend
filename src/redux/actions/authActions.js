@@ -33,7 +33,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
     //   credentials
     // );
     const { data } = await axiosInstance.post("/users/login", credentials);
-    console.log(data);
+    // console.log(data);
     
     let token = data?.data?.token;
     let user = data?.data?.user;
