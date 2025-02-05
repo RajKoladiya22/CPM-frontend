@@ -46,8 +46,8 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
 
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      navigate("/");
       toast.success("Login successfull!");
+      navigate("/");
     } else {
       dispatch({ type: "LOGIN_FAIL", payload: "Invalid credentials" });
       toast.error("Invalid email or password.");

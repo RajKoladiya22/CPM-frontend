@@ -58,6 +58,7 @@ export const getCustomFields = () => async (dispatch) => {
     dispatch({ type: "FETCH_CUSTOM_FIELDS_REQUEST" });
 
     const { data } = await axiosInstance.get("/customer/customfield");
+    // console.log("Data From Action \n", data.data);
 
     dispatch({ type: "FETCH_CUSTOM_FIELDS_SUCCESS", payload: data.data });
   } catch (error) {
@@ -71,22 +72,20 @@ export const getCustomFields = () => async (dispatch) => {
 export const searchCustomer = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: "FETCH_CUSTOMERS_REQUEST" });
-    console.log(searchQuery);
-    
+
     const { data } = await axiosInstance.get("/customer/customer", {
       params: searchQuery, // Sending search query as params
     });
-    console.log(data)
     dispatch({
       type: "FETCH_CUSTOMERS_SUCCESS",
-      payload: data.data, // Assuming the response contains `data` with customers
+      payload: data.data,
     });
   } catch (error) {
+    console.log(error);
+
     const errorMessage =
       error.response?.data?.message || "Something went wrong";
     dispatch({ type: "FETCH_CUSTOMERS_FAIL", payload: errorMessage });
-    
-    
   }
 };
 
@@ -113,6 +112,7 @@ export const updateCustomer =
         customerData
       );
       dispatch({ type: "UPDATE_CUSTOMER_SUCCESS", payload: data.customer });
+      toast.success(data.message || "Customer Updated successfully!");
       return data;
     } catch (error) {
       dispatch({

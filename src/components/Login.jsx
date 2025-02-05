@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/actions/authActions";
-import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/sidebar.css"; // Import the new CSS file
 
@@ -34,7 +34,7 @@ const Login = () => {
 
     return (
         <Container className="login-container login-box">
-            <ToastContainer />
+            <ToastContainer position="top-right" autoClose={3000} />
             <Row className="w-100">
                 <Col xs={12} md={8} lg={5} className="mx-auto">
                     <div className="login-card">

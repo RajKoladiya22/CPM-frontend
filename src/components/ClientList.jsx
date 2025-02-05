@@ -58,7 +58,7 @@ const ClientList = () => {
         if (window.confirm("Are you sure you want to delete this customer?")) {
             dispatch(deleteCustomer(customerId))
                 .then(() => {
-                    toast.success("Customer deleted successfully");
+                    // toast.success("Customer deleted successfully");
                     dispatch(searchCustomer({})); // Refresh customer list
                 })
                 .catch((err) => toast.error("Failed to delete customer"));
@@ -95,7 +95,7 @@ const ClientList = () => {
     return (
         <Container className="client-list-container">
              <ToastContainer position="top-right" autoClose={3000} />
-            <h2 className="title">Client List</h2>
+            <h2 className="title">Customer List</h2>
 
             {/* Search Form */}
             <Form onSubmit={handleSearch} className="search-form">

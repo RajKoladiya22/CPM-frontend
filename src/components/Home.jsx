@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUserCounts } from "../redux/actions/adminActions"; 
+import { fetchUserCounts } from "../redux/actions/adminActions";
 import { logoutUser, setUserFromLocalStorage } from "../redux/actions/authActions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/sidebar.css";
 
 const Home = () => {
@@ -55,41 +57,42 @@ const Home = () => {
 
   return (
     <Container className="home-container">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div>
-      <Row className="mt-4">
-        <Col xs={12}>
-          <h2 className="text-center">Welcome, {user.username}!</h2>
-        </Col>
-      </Row>
-
-      {user.role === "superadmin" && (
         <Row className="mt-4">
-          <Col md={6} className="p-1">
-            <Card className="dashboard-card">
-              <Card.Body>
-                <Card.Title>Total Super Admins</Card.Title>
-                <h3>{superadminCount}</h3>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} className="p-1">
-            <Card className="dashboard-card">
-              <Card.Body>
-                <Card.Title>Total Admins</Card.Title>
-                <h3>{adminCount}</h3>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} className="p-1">
-            <Card className="dashboard-card">
-              <Card.Body>
-                <Card.Title>Total Users</Card.Title>
-                <h3>{userCount}</h3>
-              </Card.Body>
-            </Card>
+          <Col xs={12}>
+            <h2 className="text-center">Welcome, {user.username}!</h2>
           </Col>
         </Row>
-      )}
+
+        {user.role === "superadmin" && (
+          <Row className="mt-4">
+            <Col md={6} className="p-1">
+              <Card className="dashboard-card">
+                <Card.Body>
+                  <Card.Title>Total Super Admins</Card.Title>
+                  <h3>{superadminCount}</h3>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={6} className="p-1">
+              <Card className="dashboard-card">
+                <Card.Body>
+                  <Card.Title>Total Admins</Card.Title>
+                  <h3>{adminCount}</h3>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={6} className="p-1">
+              <Card className="dashboard-card">
+                <Card.Body>
+                  <Card.Title>Total Users</Card.Title>
+                  <h3>{userCount}</h3>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        )}
       </div>
     </Container>
   );

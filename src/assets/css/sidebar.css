@@ -856,6 +856,19 @@ html {
 /* ========================= */
 /* Client List - Table & Search UI */
 /* ========================= */
+.table-responsive {
+  max-height: 500px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+/* Make the table header sticky */
+.customer-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff; /* Ensure a solid background so content below doesn't show through */
+  z-index: 10; /* Increase z-index to keep it above table body rows */
+}
+
 .client-list-container {
   background: #f8f9fa;
   padding: 20px;

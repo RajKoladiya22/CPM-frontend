@@ -5,13 +5,18 @@ import { Modal, Button, Form } from "react-bootstrap";
 
 const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
   const dispatch = useDispatch();
-  const { customFields } = useSelector((state) => state.customFields) || { customFields: [] };;
-
+  const { customFields } = useSelector((state) => state.customField) || { customFields: [] };;
+  console.log(customFields);
+  
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
     if (customerData) {
       setFormData(customerData);
+      setFormData({
+        ...customerData,
+        dynamicFields: customerData.dynamicFields || {}
+      });
     }
     dispatch(getCustomFields());
   }, [customerData, dispatch]);
@@ -25,6 +30,16 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
     dispatch(updateCustomer(customerData._id, formData)).then(() => {
       handleClose();
     });
+  };
+
+  const handleDynamicChange = (e, fieldName) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      dynamicFields: {
+        ...prevFormData.dynamicFields,
+        [fieldName]: e.target.value
+      }
+    }));
   };
 
   return (
@@ -94,15 +109,17 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               required
             />
           </Form.Group>
+          {/* Dynamic Custom Fields */}
           {customFields &&
             customFields.map((field) => (
               <Form.Group key={field._id}>
-                <Form.Label>{field.label}</Form.Label>
+                <Form.Label>{field.fieldName}</Form.Label>
                 <Form.Control
-                  type="text"
-                  name={field.name}
-                  value={formData[field.name] || ""}
-                  onChange={handleChange}
+                  // Use field.type if provided; otherwise default to "text"
+                  type={field.type || "text"}
+                  name={field.fieldName}
+                  value={(formData.dynamicFields && formData.dynamicFields[field.fieldName]) || ""}
+                  onChange={(e) => handleDynamicChange(e, field.fieldName)}
                 />
               </Form.Group>
             ))}

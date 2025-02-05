@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { generateAdminCode, generateUserCode } from "../redux/actions/codeActions";
 import { Button, Container, Row, Col, Spinner, Card, Form, InputGroup } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/sidebar.css"
 
 const GenerateCode = () => {
@@ -32,6 +34,7 @@ const GenerateCode = () => {
 
     return (
         <Container className="generate-code-container">
+            <ToastContainer position="top-right" autoClose={3000} />
             <Row className="w-100">
                 <Col xs={12} md={8} lg={6} className="mx-auto">
                     <Card className="generate-card">

@@ -112,12 +112,23 @@ const ClientForm = () => {
                                     onChange={handleChange}
                                 />
                             </Form.Group>
+
                             <Form.Group>
                                 <Form.Label>Tally Serial Number</Form.Label>
                                 <Form.Control
                                     type="number"
                                     name="tallySerialNo"
                                     value={formData.tallySerialNo}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Remark</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="remark"
+                                    value={formData.remark}
                                     onChange={handleChange}
                                 />
                             </Form.Group>

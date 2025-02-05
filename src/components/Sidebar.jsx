@@ -41,9 +41,12 @@ const Sidebar = () => {
           <Nav.Link as={Link} to="/" className={location.pathname === "/" ? "active" : ""}>
             <FaHome className="me-2" /> Home
           </Nav.Link>
+          <Nav.Link as={Link} to="/client" className={location.pathname === "/client" ? "active" : ""}>
+            <FaList className="me-2" /> Customer List
+          </Nav.Link>
           {(user?.role === "admin" || user?.role === "superadmin") && (
               <Nav.Link as={Link} to="/clientform" className={location.pathname === "/clientform" ? "active" : ""}>
-                <FaUser className="me-2" /> Add Client
+                <FaUser className="me-2" /> Add Customer
               </Nav.Link>
             )}
             {(user?.role === "admin" || user?.role === "superadmin") && (
@@ -51,9 +54,7 @@ const Sidebar = () => {
             <FaCode className="me-2" /> Generate Code
           </Nav.Link>
             )}
-          <Nav.Link as={Link} to="/client" className={location.pathname === "/client" ? "active" : ""}>
-            <FaList className="me-2" /> Client List
-          </Nav.Link>
+          
           {(user?.role === "admin" || user?.role === "superadmin") && (
           <Nav.Link as={Link} to="/addRegister" className={location.pathname === "/addRegister" ? "active" : ""}>
             <FaRegAddressCard className="me-2" /> Register

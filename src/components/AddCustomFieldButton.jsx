@@ -27,7 +27,7 @@ const AddCustomFieldButton = () => {
     e.preventDefault();
     try {
       await dispatch(addCustomField(fieldData)); // Dispatch Redux action
-      toast.success("Custom field added successfully!");
+      // toast.success("Custom field added successfully!");
       setShow(false); // Close modal
       setFieldData({ fieldName: "", fieldType: "text", isRequired: false }); // Reset form
     } catch (error) {
