@@ -19,8 +19,8 @@ const ClientForm = () => {
         mobileNumber: "",
         email: "",
         tallySerialNo: "",
-        // prime: "",
-        // blacklited: "",
+        prime: false,
+        blacklisted: false,
         remark: "",
         dynamicFields: {},
     });
@@ -50,7 +50,7 @@ const ClientForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
 
         dispatch(addCustomer(formData))
             .then(() => {
@@ -59,8 +59,8 @@ const ClientForm = () => {
                     contactPerson: "",
                     mobileNumber: "",
                     email: "",
-                    // prime: "",
-                    // blacklited: "",
+                    prime: false,
+                    blacklisted: false,
                     remark: "",
                     tallySerialNo: "",
                     dynamicFields: {},
@@ -129,15 +129,14 @@ const ClientForm = () => {
                                 />
                             </Form.Group>
 
-                            {/* <div className="d-flex align-items-center gap-4">
+                            <div className="d-flex align-items-center gap-4">
                                 <Form.Group controlId="blacklisted" className="d-flex align-items-baseline">
                                     <Form.Label className="me-2">Blacklisted</Form.Label>
                                     <Form.Check
                                         type="switch"
                                         id="blacklisted-switch"
-                                        label=""
-                                        name="blacklited"
-                                        checked={formData.blacklited}
+                                        name="blacklisted"
+                                        checked={!!formData.blacklisted} // Ensure boolean value
                                         onChange={handleChange}
                                     />
                                 </Form.Group>
@@ -147,13 +146,12 @@ const ClientForm = () => {
                                     <Form.Check
                                         type="switch"
                                         id="prime-switch"
-                                        label=""
                                         name="prime"
-                                        checked={formData.prime}
+                                        checked={!!formData.prime} // Ensure boolean value
                                         onChange={handleChange}
                                     />
                                 </Form.Group>
-                            </div> */}
+                            </div>
 
 
 
@@ -207,14 +205,13 @@ const ClientForm = () => {
                                         //     onChange={(e) => handleDynamicChange(e, field.fieldName)}
                                         // />
                                         <Form.Check
-                                            type="switch"
-                                            id={field.fieldName}
-                                            label=""
-                                            name={field.fieldName}
-                                            checked={formData.dynamicFields[field.fieldName] || false}
-                                            onChange={(e) => handleDynamicChange(e, field.fieldName)}
-                                            className="m-2"
-                                        />
+                                        type="switch"
+                                        id={field.fieldName}
+                                        name={field.fieldName}
+                                        checked={!!formData.dynamicFields[field.fieldName]} // Ensure boolean default
+                                        onChange={(e) => handleDynamicChange(e, field.fieldName)}
+                                        className="m-2"
+                                    />
 
                                     )}
                                     {field.fieldType === "date" && (

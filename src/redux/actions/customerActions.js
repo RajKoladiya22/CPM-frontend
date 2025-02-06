@@ -107,6 +107,7 @@ export const deleteCustomer = (customerId) => async (dispatch) => {
 export const updateCustomer =
   (customerId, customerData) => async (dispatch) => {
     try {
+      dispatch({ type: "UPDATE_CUSTOMER_REQUEST" });
       const { data } = await axiosInstance.put(
         `/customer/customer/${customerId}`,
         customerData

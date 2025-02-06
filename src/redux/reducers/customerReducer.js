@@ -24,13 +24,18 @@ export const customerReducer = (state = customerInitialState, action) => {
         success: false,
         error: action.payload,
       };
+    case "UPDATE_CUSTOMER_REQUEST":
+      return { ...state, loading: true, success: false, error: null };
     case "UPDATE_CUSTOMER_SUCCESS":
       return {
         ...state,
+        loading: false,
         customers: state.customers.map((customer) =>
           customer._id === action.payload._id ? action.payload : customer
         ),
       };
+    case "UPDATE_CUSTOMER_FAIL":
+      return { ...state, loading: false, success: false, error: null };
     case "DELETE_CUSTOMER_SUCCESS":
       return {
         ...state,

@@ -1,46 +1,83 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCustomFields, updateCustomer } from "../redux/actions/customerActions";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
 
 const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.customer || []);
   const { customFields } = useSelector((state) => state.customField) || { customFields: [] };;
   // console.log(customFields);
 
   const [formData, setFormData] = useState({});
 
+  // useEffect(() => {
+  //   if (customerData) {
+  //     setFormData(customerData);
+  //     setFormData({
+  //       ...customerData,
+  //       dynamicFields: customerData.dynamicFields || {}
+  //     });
+  //   }
+  //   dispatch(getCustomFields());
+  // }, [customerData, dispatch]);
   useEffect(() => {
     if (customerData) {
-      setFormData(customerData);
       setFormData({
         ...customerData,
-        dynamicFields: customerData.dynamicFields || {}
+        blacklisted: customerData.blacklisted ?? false, // Ensure boolean
+        prime: customerData.prime ?? false, // Ensure boolean
+        dynamicFields: customerData.dynamicFields || {},
       });
     }
     dispatch(getCustomFields());
   }, [customerData, dispatch]);
 
+
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, type, checked, value } = e.target;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === "checkbox" ? checked : value, // Ensure checkboxes store boolean values
+    }));
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(formData);
+
     dispatch(updateCustomer(customerData._id, formData)).then(() => {
       handleClose();
     });
   };
 
+  // const handleDynamicChange = (e, fieldName) => {
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     dynamicFields: {
+  //       ...prevFormData.dynamicFields,
+  //       [fieldName]: e.target.value
+  //     }
+  //   }));
+  // };
   const handleDynamicChange = (e, fieldName) => {
+    const { target } = e;
+    const { type, checked, value } = target;
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       dynamicFields: {
         ...prevFormData.dynamicFields,
-        [fieldName]: e.target.value
-      }
+        [fieldName]: type === "checkbox" ? checked : value, // Ensure checkboxes store boolean values
+      },
     }));
   };
+
 
   return (
     <Modal show={show} onHide={handleClose} className="mt-5">
@@ -56,7 +93,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               name="companyName"
               value={formData.companyName || ""}
               onChange={handleChange}
-              required
+
             />
           </Form.Group>
           <Form.Group>
@@ -66,7 +103,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               name="contactPerson"
               value={formData.contactPerson || ""}
               onChange={handleChange}
-              required
+
             />
           </Form.Group>
           <Form.Group>
@@ -76,7 +113,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               name="mobileNumber"
               value={formData.mobileNumber || ""}
               onChange={handleChange}
-              required
+
             />
           </Form.Group>
           <Form.Group>
@@ -86,7 +123,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               name="email"
               value={formData.email || ""}
               onChange={handleChange}
-              required
+
             />
           </Form.Group>
           <Form.Group>
@@ -96,19 +133,18 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
               name="tallySerialNo"
               value={formData.tallySerialNo || ""}
               onChange={handleChange}
-              required
+
             />
           </Form.Group>
 
-          {/* <div className="d-flex align-items-center gap-4">
+          <div className="d-flex align-items-center gap-4">
             <Form.Group controlId="blacklisted" className="d-flex align-items-baseline">
               <Form.Label className="me-2">Blacklisted</Form.Label>
               <Form.Check
                 type="switch"
                 id="blacklisted-switch"
-                label=""
-                name="blacklited"
-                checked={formData.blacklited}
+                name="blacklisted"
+                checked={!!formData.blacklisted}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -120,11 +156,11 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
                 id="prime-switch"
                 label=""
                 name="prime"
-                checked={formData.prime}
+                checked={!!formData.prime}
                 onChange={handleChange}
               />
             </Form.Group>
-          </div> */}
+          </div>
 
           <Form.Group>
 
@@ -138,19 +174,6 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
             />
           </Form.Group>
           {/* Dynamic Custom Fields */}
-          {/* {customFields &&
-            customFields.map((field) => (
-              <Form.Group key={field._id}>
-                <Form.Label>{field.fieldName}</Form.Label>
-                <Form.Control
-                  // Use field.type if provided; otherwise default to "text"
-                  type={field.type || "text"}
-                  name={field.fieldName}
-                  value={(formData.dynamicFields && formData.dynamicFields[field.fieldName]) || ""}
-                  onChange={(e) => handleDynamicChange(e, field.fieldName)}
-                />
-              </Form.Group>
-            ))} */}
           {customFields.map((field) => (
             <Form.Group key={field._id} className="dynamic-field-group">
               <Form.Label>{field.fieldName}</Form.Label>
@@ -189,12 +212,13 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
                 <Form.Check
                   type="switch"
                   id={field.fieldName}
-                  label=""
                   name={field.fieldName}
-                  checked={formData.dynamicFields?.[field.fieldName] || false}
+                  checked={!!formData.dynamicFields?.[field.fieldName]} // Ensures boolean value
                   onChange={(e) => handleDynamicChange(e, field.fieldName)}
+                  required={field.isRequired}
                   className="m-2"
                 />
+
               )}
 
               {field.fieldType === "date" && (
@@ -208,8 +232,9 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
             </Form.Group>
           ))}
 
-          <Button variant="primary" type="submit" className="mt-2">
-            Update
+
+          <Button type="submit" className="mt-3 btn-primary" disabled={loading}>
+            {loading ? <Spinner animation="border" size="sm" /> : "Update"}
           </Button>
         </Form>
       </Modal.Body>

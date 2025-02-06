@@ -25,8 +25,8 @@ const ClientList = () => {
     const dispatch = useDispatch();
     const { customers, loading, error } = useSelector((state) => state.customer);
     const { user } = useSelector((state) => state.auth); // Get logged-in user details
-    
-    
+
+
     const isAdmin = user?.role === "admin"; // Check if the user is an admin
 
     const handleChange = (e) => {
@@ -94,7 +94,7 @@ const ClientList = () => {
 
     return (
         <Container className="client-list-container">
-             <ToastContainer position="top-right" autoClose={3000} />
+            <ToastContainer position="top-right" autoClose={3000} />
             <h2 className="title">Customer List</h2>
 
             {/* Search Form */}
@@ -204,6 +204,16 @@ const ClientList = () => {
                                                 >
                                                     Delete
                                                 </Button>
+                                                {/* <Button
+                                                    disabled={loading}
+                                                    id={customer._id}
+                                                    variant="danger"
+                                                    size="sm"
+                                                    className="m-1"
+                                                    onClick={() => handleDeleteCustomer(customer._id)}
+                                                >
+                                                    {loading ? <Spinner animation="border" size="sm" /> : "Delete"}
+                                                </Button> */}
                                             </>
                                         )}
                                     </td>
