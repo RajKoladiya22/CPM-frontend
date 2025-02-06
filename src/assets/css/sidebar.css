@@ -225,6 +225,7 @@
   .sidebar {
     width: 22% !important;
   }
+
   .main-content {
     padding: 20px;
     transition: margin-left 0.3s ease-in-out;
@@ -857,7 +858,8 @@ html {
 /* Client List - Table & Search UI */
 /* ========================= */
 .table-responsive {
-  max-height: 500px; /* Adjust the height as needed */
+  max-height: 500px;
+  /* Adjust the height as needed */
   overflow-y: auto;
 }
 
@@ -865,9 +867,40 @@ html {
 .customer-table thead th {
   position: sticky;
   top: 0;
-  background-color: #fff; /* Ensure a solid background so content below doesn't show through */
-  z-index: 10; /* Increase z-index to keep it above table body rows */
+  background-color: #fff;
+  /* Ensure a solid background so content below doesn't show through */
+  z-index: 10;
+  /* Increase z-index to keep it above table body rows */
 }
+/* Apply border-radius only to the first and last td in each row */
+.customer-table tbody tr td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.customer-table tbody tr td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+
+
+.prime-customer {
+  background-color: rgba(144, 238, 144, 0.669) !important;
+  /* font-weight: bold; */
+  }
+
+.blacklisted-customer {
+  background-color: rgba(255, 0, 0, 0.617) !important;
+  /* font-weight: bold; */
+  color: white;
+  /* Ensures text is readable on red background */
+}
+
+.default-customer {
+  background-color: transparent !important;
+}
+
 
 .client-list-container {
   background: #f8f9fa;

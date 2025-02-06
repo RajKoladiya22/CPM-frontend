@@ -31,6 +31,14 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
               <td><strong>Tally Serial Number:</strong></td>
               <td>{customer.tallySerialNo}</td>
             </tr>
+            <tr>
+              <td><strong>Prime:</strong></td>
+              <td>{customer.prime ? "✔ Yes" : "❌ No"}</td>
+            </tr>
+            <tr>
+              <td><strong>Blacklisted:</strong></td>
+              <td>{customer.blacklisted ? "✔ Yes" : "❌ No"}</td>
+            </tr>
 
             <tr>
               <td><strong>Remark:</strong></td>

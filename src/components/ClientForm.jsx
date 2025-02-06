@@ -105,6 +105,7 @@ const ClientForm = () => {
                                     name="mobileNumber"
                                     value={formData.mobileNumber}
                                     onChange={handleChange}
+                                    isInvalid={!/^[0-9]{10}$/.test(formData.mobileNumber)}
                                     required
                                 />
                             </Form.Group>

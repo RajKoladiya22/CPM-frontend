@@ -165,6 +165,7 @@ const ClientList = () => {
                     <Table className="customer-table">
                         <thead>
                             <tr>
+                                <th>Sr. No.</th>
                                 <th>Company Name</th>
                                 <th>Contact Person</th>
                                 <th>Mobile Number</th>
@@ -172,53 +173,54 @@ const ClientList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {customers.map((customer) => (
-                                <tr key={customer._id}>
-                                    <td>{customer.companyName}</td>
-                                    <td>{customer.contactPerson}</td>
-                                    <td>{customer.mobileNumber}</td>
-                                    <td>
-                                        <Button
-                                            variant="info"
-                                            size="sm"
-                                            className="m-1 view-btn"
-                                            onClick={() => handleViewDetails(customer)}
-                                        >
-                                            View
-                                        </Button>
-                                        {isAdmin && (
-                                            <>
-                                                <Button
-                                                    variant="warning"
-                                                    size="sm"
-                                                    className="m-1"
-                                                    onClick={() => handleUpdateCustomer(customer)}
-                                                >
-                                                    Update
-                                                </Button>
-                                                <Button
-                                                    variant="danger"
-                                                    size="sm"
-                                                    className="m-1"
-                                                    onClick={() => handleDeleteCustomer(customer._id)}
-                                                >
-                                                    Delete
-                                                </Button>
-                                                {/* <Button
-                                                    disabled={loading}
-                                                    id={customer._id}
-                                                    variant="danger"
-                                                    size="sm"
-                                                    className="m-1"
-                                                    onClick={() => handleDeleteCustomer(customer._id)}
-                                                >
-                                                    {loading ? <Spinner animation="border" size="sm" /> : "Delete"}
-                                                </Button> */}
-                                            </>
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
+                            {customers.map((customer, index) => {
+                                let rowClass = "default-customer"; // Default transparent
+
+                                if (customer.prime) {
+                                    rowClass = "prime-customer";
+                                } else if (customer.blacklisted) {
+                                    rowClass = "blacklisted-customer";
+                                }
+
+                                return (
+                                    <tr key={customer._id} >
+                                        <td className={rowClass}>{index + 1}</td>
+                                        <td className={rowClass}>{customer.companyName}</td>
+                                        <td className={rowClass}>{customer.contactPerson}</td>
+                                        <td className={rowClass}>{customer.mobileNumber}</td>
+                                        <td className={rowClass}>
+                                            <Button
+                                                variant="info"
+                                                size="sm"
+                                                className="m-1 view-btn"
+                                                onClick={() => handleViewDetails(customer)}
+                                            >
+                                                View
+                                            </Button>
+                                            {isAdmin && (
+                                                <>
+                                                    <Button
+                                                        variant="warning"
+                                                        size="sm"
+                                                        className="m-1"
+                                                        onClick={() => handleUpdateCustomer(customer)}
+                                                    >
+                                                        Update
+                                                    </Button>
+                                                    <Button
+                                                        variant="danger"
+                                                        size="sm"
+                                                        className="m-1"
+                                                        onClick={() => handleDeleteCustomer(customer._id)}
+                                                    >
+                                                        Delete
+                                                    </Button>
+                                                </>
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </Table>
                 </div>
