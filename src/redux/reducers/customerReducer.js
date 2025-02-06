@@ -59,6 +59,7 @@ const customFieldInitialState = {
 export const customFieldReducer = (state = customFieldInitialState, action) => {
   switch (action.type) {
     case "ADD_CUSTOM_FIELD_REQUEST":
+      return { ...state, loading: true };
     case "FETCH_CUSTOM_FIELDS_REQUEST":
       return { ...state, loading: true };
     case "ADD_CUSTOM_FIELD_SUCCESS":

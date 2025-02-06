@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Modal, Button, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import { addCustomField } from "../redux/actions/customerActions"; // Redux action
 import { toast } from "react-toastify";
 import "../assets/css/sidebar.css"; // Import custom CSS
@@ -8,6 +8,10 @@ import { FaPlus  } from "react-icons/fa";
 
 const AddCustomFieldButton = () => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.customField || []);
+
+  console.log(loading);
+  
   const [show, setShow] = useState(false);
   const [fieldData, setFieldData] = useState({
     fieldName: "",
@@ -86,8 +90,8 @@ const AddCustomFieldButton = () => {
               />
             </Form.Group>
 
-            <Button type="submit" className="mt-3 btn-primary">
-              Save Field
+            <Button type="submit" className="mt-3 btn-primary" disabled={loading}>
+               {loading ? <Spinner animation="border" size="sm" /> : "Save Field "}
             </Button>
           </Form>
         </Modal.Body>
