@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import GenerateCode from "./components/GenerateCode";
 import ClientForm from "./components/ClientForm";
 import ClientList from "./components/ClientList";
+import AdminCustomFieldsList from "./components/AdminCustomFieldsList";
 // import Profile from "./components/Profile";
 // import EmployeeList from "./components/EmployeeList";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -27,6 +28,7 @@ function Layout() {
           <Route path="/generateCode" element={<PrivateRoute element={<GenerateCode />} allowedRoles={["admin", "superadmin"]} />} />
           <Route path="/clientform" element={<PrivateRoute element={<ClientForm />} allowedRoles={["admin", "superadmin"]} />} />
           <Route path="/client" element={<PrivateRoute element={<ClientList />} allowedRoles={["user", "admin", "superadmin"]} />} />
+          <Route path="/customfield" element={<PrivateRoute element={<AdminCustomFieldsList />} allowedRoles={["admin", "superadmin"]} />} />
 
           <Route path="/" element={<PrivateRoute element={<Home />} />} />
           {/* <Route path="/profile" element={<Profile />} />

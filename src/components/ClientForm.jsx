@@ -11,7 +11,7 @@ import "../assets/css/sidebar.css";
 const ClientForm = () => {
     const dispatch = useDispatch();
     const { loading } = useSelector((state) => state.customer || []);
-    console.log(loading);
+    // console.log(loading);
     
     const { customFields } = useSelector((state) => state.customField) || { customFields: [] };
 

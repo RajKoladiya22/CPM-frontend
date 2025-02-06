@@ -10,7 +10,7 @@ const AddCustomFieldButton = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.customField || []);
 
-  console.log(loading);
+  // console.log(loading);
   
   const [show, setShow] = useState(false);
   const [fieldData, setFieldData] = useState({
