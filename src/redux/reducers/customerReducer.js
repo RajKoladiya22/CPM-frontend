@@ -73,11 +73,11 @@ export const customFieldReducer = (state = customFieldInitialState, action) => {
     case "ADD_CUSTOM_FIELD_FAIL":
     case "FETCH_CUSTOM_FIELDS_FAIL":
       return { ...state, loading: false, error: action.payload };
-    case "DELETE_CUSTOMER_SUCCESS":
+    case "DELETE_FIELD_SUCCESS":
       return {
         ...state,
         customFields: state.customFields.filter(
-          (customField) => customField._id !== action.payload
+          (field) => field._id !== action.payload
         ),
       };
     case "UPDATE_CUSTOM_FIELD_REQUEST":

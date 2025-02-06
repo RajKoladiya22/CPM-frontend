@@ -132,7 +132,7 @@ export const updateCustomField = (id, updatedData) => async (dispatch) => {
       `/customer/customfield/${id}`,
       updatedData
     );
-
+    toast.success(data.message || "Field Updated successfully!");
     dispatch({ type: "UPDATE_CUSTOM_FIELD_SUCCESS", payload: data.data });
   } catch (error) {
     dispatch({ type: "UPDATE_CUSTOM_FIELD_FAILURE", payload: error.message });
@@ -141,14 +141,11 @@ export const updateCustomField = (id, updatedData) => async (dispatch) => {
 
 export const deleteField = (fieldId) => async (dispatch) => {
   try {
-    // console.log("ACTION ID", fieldId);
-
-    // await axios.delete(`https://cpm-api.vercel.app/api/customer/customer/${fieldId}`);
     await axiosInstance.delete(`/customer/customfield/${fieldId}`);
     dispatch({ type: "DELETE_FIELD_SUCCESS", payload: fieldId });
     toast.success("Field deleted successfully");
   } catch (error) {
-    toast.error("Fail to Delete");
+    toast.error("Failed to delete field.");
     dispatch({
       type: "DELETE_FIELD_FAIL",
       payload: error.response.data.message,

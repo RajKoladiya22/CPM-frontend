@@ -38,16 +38,13 @@ const AdminCustomFieldsList = () => {
 
     const handleDeleteField = (fieldId) => {
         if (window.confirm("Are you sure you want to delete this Field?")) {
-            dispatch(deleteField(fieldId))
-                .then(() => {
-                    dispatch(getCustomFields()); // Refresh Field list
-                    toast.success("Field deleted successfully!");
-                })
+            dispatch(deleteField(fieldId)) // This will automatically update Redux
                 .catch(() => {
-                    toast.error("Failed to delete field.");
+                    toast.error("Failed to delete the field.");
                 });
         }
     };
+
 
     const handleUpdateField = (field) => {
         setSelectedField(field);
@@ -120,7 +117,7 @@ const AdminCustomFieldsList = () => {
                     </Pagination>
                 </>
             )}
-            
+
             {/* Update Modal */}
             {selectedField && (
                 <UpdateCustomFieldModal
