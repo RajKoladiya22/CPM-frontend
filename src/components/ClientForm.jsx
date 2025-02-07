@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddCustomFieldButton from "./AddCustomFieldButton";
-import "../assets/css/sidebar.css";
+import "../assets/css/index.css";
 
 const ClientForm = () => {
     const dispatch = useDispatch();
     const { loading } = useSelector((state) => state.customer || []);
     // console.log(loading);
-    
+
     const { customFields } = useSelector((state) => state.customField) || { customFields: [] };
 
     const [formData, setFormData] = useState({
@@ -56,8 +56,7 @@ const ClientForm = () => {
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-  
-    
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
@@ -77,28 +76,9 @@ const ClientForm = () => {
         }));
     };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // console.log(formData);
-
-    //     dispatch(addCustomer(formData))
-    //         .then(() => {
-    //             setFormData({
-    //                 companyName: "",
-    //                 contactPerson: "",
-    //                 mobileNumber: "",
-    //                 email: "",
-    //                 prime: false,
-    //                 blacklisted: false,
-    //                 remark: "",
-    //                 tallySerialNo: "",
-    //                 dynamicFields: {},
-    //             });
-    //         });
-    // };
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         if (validateForm()) {
             dispatch(addCustomer(formData))
                 .then(() => {
@@ -171,8 +151,8 @@ const ClientForm = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     isInvalid={!!errors.email}
-                                    />
-                                    <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                                />
+                                <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group>
@@ -183,8 +163,8 @@ const ClientForm = () => {
                                     value={formData.tallySerialNo}
                                     onChange={handleChange}
                                     isInvalid={!!errors.tallySerialNo}
-                                    />
-                                    <Form.Control.Feedback type="invalid">{errors.tallySerialNo}</Form.Control.Feedback>
+                                />
+                                <Form.Control.Feedback type="invalid">{errors.tallySerialNo}</Form.Control.Feedback>
                             </Form.Group>
 
                             <div className="d-flex align-items-center gap-4">
@@ -234,9 +214,9 @@ const ClientForm = () => {
                                             value={formData.dynamicFields[field.fieldName] || ""}
                                             onChange={(e) => handleDynamicChange(e, field.fieldName)}
                                             isInvalid={!!errors[field.fieldName]}
-                                            // required={field.isRequired}
+                                        // required={field.isRequired}
                                         />
-                                        
+
                                     )}
                                     {field.fieldType === "number" && (
                                         <Form.Control
@@ -245,7 +225,7 @@ const ClientForm = () => {
                                             value={formData.dynamicFields[field.fieldName] || ""}
                                             onChange={(e) => handleDynamicChange(e, field.fieldName)}
                                             isInvalid={!!errors[field.fieldName]}
-                                            // required={field.isRequired}
+                                        // required={field.isRequired}
                                         />
                                     )}
                                     {field.fieldType === "email" && (
@@ -255,17 +235,10 @@ const ClientForm = () => {
                                             value={formData.dynamicFields[field.fieldName] || ""}
                                             onChange={(e) => handleDynamicChange(e, field.fieldName)}
                                             isInvalid={!!errors[field.fieldName]}
-                                            // required={field.isRequired}
+                                        // required={field.isRequired}
                                         />
                                     )}
                                     {field.fieldType === "checkbox" && (
-                                        // <Form.Check
-                                        //     type="checkbox"
-                                        //     label={field.fieldName}
-                                        //     name={field.fieldName}
-                                        //     checked={formData.dynamicFields[field.fieldName] || false}
-                                        //     onChange={(e) => handleDynamicChange(e, field.fieldName)}
-                                        // />
                                         <Form.Check
                                             type="switch"
                                             id={field.fieldName}

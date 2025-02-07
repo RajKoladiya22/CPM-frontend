@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import { addCustomField } from "../redux/actions/customerActions"; // Redux action
 import { toast } from "react-toastify";
-import "../assets/css/sidebar.css"; // Import custom CSS
+import "../assets/css/index.css"; // Import custom CSS
 import { FaPlus  } from "react-icons/fa";
 
 const AddCustomFieldButton = () => {

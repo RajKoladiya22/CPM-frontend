@@ -6,7 +6,7 @@ import { fetchUserCounts } from "../redux/actions/adminActions";
 import { logoutUser, setUserFromLocalStorage } from "../redux/actions/authActions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../assets/css/sidebar.css";
+import "../assets/css/index.css";
 
 const Home = () => {
   const dispatch = useDispatch();

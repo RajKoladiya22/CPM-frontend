@@ -5,7 +5,7 @@ import { Button, Container, Row, Col, Spinner, Card, Form, InputGroup } from "re
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../assets/css/sidebar.css"
+import "../assets/css/index.css"
 
 const GenerateCode = () => {
     const dispatch = useDispatch();

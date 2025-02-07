@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button, Table } from "react-bootstrap";
-import "../assets/css/sidebar.css"; // Import the CSS file
+import "../assets/css/index.css"; // Import the CSS file
 
 const CustomerDetailModal = ({ show, onHide, customer }) => {
   return (
