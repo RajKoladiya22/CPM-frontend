@@ -57,13 +57,37 @@ const ClientForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
+    // const handleChange = (e) => {
+    //     const { name, value, type, checked } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: type === "checkbox" ? checked : value,
+    //     });
+    // };
+
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const {  name, value, type, checked } = e.target;
+    
+        if (name === "blacklisted" && checked) {
+            setFormData({
+                ...formData,
+                blacklisted: true,
+                prime: false, // Automatically deselect Prime
+            });
+        } else if (name === "prime" && checked) {
+            setFormData({
+                ...formData,
+                blacklisted: false, // Automatically deselect Blacklisted
+                prime: true,
+            });
+        } else {
         setFormData({
             ...formData,
             [name]: type === "checkbox" ? checked : value,
         });
+        }
     };
+    
 
     const handleDynamicChange = (e, fieldName) => {
         const { value, type, checked } = e.target;

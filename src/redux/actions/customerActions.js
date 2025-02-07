@@ -196,7 +196,8 @@ export const searchCustomer = (searchQuery, page = 1, limit = 10) => async (disp
     const { data } = await axiosInstance.get("/customer/customer", {
       params: { ...searchQuery, page, limit },
     });
-
+    // console.log(data);
+    
     dispatch({
       type: "FETCH_CUSTOMERS_SUCCESS",
       payload: {

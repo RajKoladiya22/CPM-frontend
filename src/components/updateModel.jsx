@@ -37,15 +37,37 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
   // const handleChange = (e) => {
   //   setFormData({ ...formData, [e.target.name]: e.target.value });
   // };
+
+  // const handleChange = (e) => {
+  //   const { name, type, checked, value } = e.target;
+
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: type === "checkbox" ? checked : value, // Ensure checkboxes store boolean values
+  //   }));
+  // };
   const handleChange = (e) => {
-    const { name, type, checked, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: type === "checkbox" ? checked : value, // Ensure checkboxes store boolean values
-    }));
+    if (name === "blacklisted" && checked) {
+      setFormData({
+        ...formData,
+        blacklisted: true,
+        prime: false, // Automatically deselect Prime
+      });
+    } else if (name === "prime" && checked) {
+      setFormData({
+        ...formData,
+        blacklisted: false, // Automatically deselect Blacklisted
+        prime: true,
+      });
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: type === "checkbox" ? checked : value, // Ensure checkboxes store boolean values
+      }));
+    }
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
