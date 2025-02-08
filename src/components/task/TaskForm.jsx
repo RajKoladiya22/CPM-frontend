@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createTask, updateTask } from "../redux/actions/taskActions";
+import { createTask, updateTask } from "../../redux/actions/task/taskActions";
 
 const TaskForm = ({ task, closeForm }) => {
   const [title, setTitle] = useState(task?.title || "");

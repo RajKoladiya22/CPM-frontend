@@ -62,7 +62,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTasks, updateTaskStatus, deleteTask } from "../../redux/actions/task/taskActions";
+import { fetchTasks,  deleteTask } from "../../redux/actions/task/taskActions";
 import { format } from "date-fns";
 
 const TaskList = () => {
