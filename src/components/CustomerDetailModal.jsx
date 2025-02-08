@@ -50,6 +50,36 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
               const value = customer.dynamicFields[key];
 
               let displayValue;
+
+              if (typeof value === "boolean") {
+                displayValue = value ? "✔ Yes" : "❌ No";
+              } else if (Array.isArray(value)) {
+                // Handle multi-select dropdowns and array values
+                displayValue = value.map((item) => item.label || item.value || item).join(", ");
+              } else if (typeof value === "object" && value !== null) {
+                // Handle object values
+                displayValue = value.label || value.value || JSON.stringify(value);
+              } else if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                // Handle date formatting
+                const [year, month, day] = value.split("-");
+                displayValue = `${day}/${month}/${year}`;
+              } else {
+                displayValue = value;
+              }
+
+              return (
+                <tr key={key}>
+                  <td><strong>{key}:</strong></td>
+                  <td>{displayValue}</td>
+                </tr>
+              );
+            })}
+
+
+            {/* {Object.keys(customer.dynamicFields).map((key) => {
+              const value = customer.dynamicFields[key];
+
+              let displayValue;
               if (typeof value === "boolean") {
                 displayValue = value ? "✔ Yes" : "❌ No";
               } else if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
@@ -65,7 +95,8 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                   <td>{displayValue}</td>
                 </tr>
               );
-            })}
+            })} */}
+
             {/* {Object.keys(customer.dynamicFields).map((key) => {
               const value = customer.dynamicFields[key];
 

@@ -3,15 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import { updateCustomField } from "../redux/actions/customerActions";
 import { toast } from "react-toastify";
+import { FaPlus, FaTimes } from "react-icons/fa";
+import "../assets/css/index.css"
 
 const UpdateCustomFieldModal = ({ fieldToEdit, show, handleClose }) => {
+
     const dispatch = useDispatch();
     const { loading } = useSelector((state) => state.customField);
-    
+
     const [fieldData, setFieldData] = useState({
         fieldName: "",
         fieldType: "text",
         isRequired: false,
+        options: []
     });
 
     useEffect(() => {
@@ -20,6 +24,7 @@ const UpdateCustomFieldModal = ({ fieldToEdit, show, handleClose }) => {
                 fieldName: fieldToEdit.fieldName,
                 fieldType: fieldToEdit.fieldType,
                 isRequired: fieldToEdit.isRequired,
+                options: fieldToEdit.options || []
             });
         }
     }, [fieldToEdit]);
@@ -32,16 +37,35 @@ const UpdateCustomFieldModal = ({ fieldToEdit, show, handleClose }) => {
         });
     };
 
+    const handleAddOption = () => {
+        if (fieldData.newOption) {
+            setFieldData({
+                ...fieldData,
+                options: [...fieldData.options, fieldData.newOption],
+                newOption: ""
+            });
+        }
+    };
+
+    const handleRemoveOption = (index) => {
+        setFieldData({
+            ...fieldData,
+            options: fieldData.options.filter((_, i) => i !== index)
+        });
+    };
+
+    // console.log("Updated Data ID", fieldToEdit._id)
+    // console.log("Updated Data", fieldData)
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!fieldToEdit) return; // Prevents submitting if no field is selected
+        if (!fieldToEdit) return;
 
         try {
             await dispatch(updateCustomField(fieldToEdit._id, fieldData));
-            // toast.success("Custom field updated successfully!");
-            handleClose(); // Close modal after update
+            toast.success("Custom field updated successfully!");
+            handleClose();
         } catch (error) {
-            // toast.error("Failed to update custom field");
+            toast.error("Failed to update custom field");
         }
     };
 
@@ -76,8 +100,38 @@ const UpdateCustomFieldModal = ({ fieldToEdit, show, handleClose }) => {
                             <option value="date">Date</option>
                             <option value="email">Email</option>
                             <option value="checkbox">Checkbox</option>
+                            <option value="dropdown">Dropdown</option>
                         </Form.Control>
                     </Form.Group>
+
+                    {fieldData.fieldType === "dropdown" && (
+                        <Form.Group>
+                            <Form.Label>Dropdown Options</Form.Label>
+                            <div className="d-flex">
+                                <Form.Control
+                                    type="text"
+                                    name="newOption"
+                                    value={fieldData.newOption || ""}
+                                    onChange={handleChange}
+                                />
+                                <Button onClick={handleAddOption} className="ms-2">Add</Button>
+                            </div>
+                            <ul className="mt-2">
+                                {fieldData.options.map((option, index) => (
+                                    <li key={index} className="badge d-flex justify-content-between">
+                                        {option}
+                                        {/* <Button variant="danger" size="sm" onClick={() => handleRemoveOption(index)}>X</Button> */}
+                                        <FaTimes
+                                            className="ml-1 text-danger badge-close-icon"
+                                            style={{ cursor: "pointer" }}
+                                            onClick={() => handleRemoveOption(index)}
+                                            aria-label="Remove option"
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        </Form.Group>
+                    )}
 
                     <Form.Group>
                         <Form.Check
@@ -99,3 +153,4 @@ const UpdateCustomFieldModal = ({ fieldToEdit, show, handleClose }) => {
 };
 
 export default UpdateCustomFieldModal;
+

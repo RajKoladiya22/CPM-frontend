@@ -372,6 +372,9 @@ body {
 html {
   scrollbar-gutter: stable;
 }
+ul{
+  padding: 0 !important;
+}
 
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
@@ -1398,6 +1401,48 @@ html {
   font-size: 14px;
   margin-top: 10px;
 }
+
+
+/* ========================= */
+/* badge */
+/* ========================= */
+.badge {
+  color: black !important;
+  font-size: 18px !important;
+  border: solid 1px rgba(0, 0, 0, 0.087) !important;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 30px; 
+  font-size: 1rem; 
+  transition: all 0.3s ease; 
+  cursor: context-menu;
+  margin: 2px 0;
+}
+
+.badge:hover {
+  background-color: #0069d978; 
+  transform: scale(1.03); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.badge-close-icon {
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding-left: 5px;
+}
+
+.badge-close-icon:hover {
+  transform: scale(1.5); 
+  color: #4e0008 !important;
+}
+
+.badge-close-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); 
+}
+
+
+
+
 
 
 /* ========================= */
