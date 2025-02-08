@@ -61,6 +61,8 @@ import ClientForm from "./components/ClientForm";
 import ClientList from "./components/ClientList";
 import AdminCustomFieldsList from "./components/AdminCustomFieldsList";
 import PrivateRoute from "./utils/PrivateRoute";
+import TaskForm from "./components/task/TaskForm";
+import TaskList from "./components/task/TaskList";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -78,6 +80,8 @@ function LayoutWrapper() {
         <Route path="/clientform" element={<PrivateRoute element={<ClientForm />} allowedRoles={["admin", "superadmin"]} />} />
         <Route path="/client" element={<PrivateRoute element={<ClientList />} allowedRoles={["user", "admin", "superadmin"]} />} />
         <Route path="/customfield" element={<PrivateRoute element={<AdminCustomFieldsList />} allowedRoles={["admin", "superadmin"]} />} />
+        <Route path="/task" element={<PrivateRoute element={<TaskForm />} allowedRoles={["admin", "superadmin"]} />} />
+        <Route path="/tasklist" element={<PrivateRoute element={<TaskList />} allowedRoles={["admin", "superadmin"]} />} />
         <Route path="/" element={<PrivateRoute element={<Home />} />} />
       </Routes>
     </DashboardLayout>

@@ -8,7 +8,7 @@ export const fetchUserCounts = () => async (dispatch) => {
     const token = localStorage.getItem("userToken");
     if (!token) throw new Error("Authentication failed! Please log in again.");
 
-    const { data } = await axiosInstance.get("/users/userlist");
+    const { data } = await axiosInstance.get("/userlist");
 
     dispatch({
       type: "FETCH_USER_COUNTS_SUCCESS",

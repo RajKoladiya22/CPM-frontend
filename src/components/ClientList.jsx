@@ -126,10 +126,10 @@ const ClientList = () => {
                                 return (
 
                                     <tr key={customer._id} className={customer.prime ? "prime-customer" : customer.blacklisted ? "blacklisted-customer" : "default-customer"}>
-                                        <td className={rowClass}>{(currentPage - 1) * limit + index + 1}</td>
-                                        <td className={rowClass}>{customer.companyName}</td>
-                                        <td className={rowClass}>{customer.contactPerson}</td>
-                                        <td className={rowClass}>{customer.mobileNumber}</td>
+                                        <td className={rowClass} onClick={() => handleViewDetails(customer)} >{(currentPage - 1) * limit + index + 1}</td>
+                                        <td className={rowClass} onClick={() => handleViewDetails(customer)} >{customer.companyName}</td>
+                                        <td className={rowClass} onClick={() => handleViewDetails(customer)} >{customer.contactPerson}</td>
+                                        <td className={rowClass} onClick={() => handleViewDetails(customer)} >{customer.mobileNumber}</td>
                                         <td className={rowClass}>
                                             <Button variant="info" size="sm" className="m-1 view-btn" onClick={() => handleViewDetails(customer)}>View</Button>
                                             {isAdmin && (
